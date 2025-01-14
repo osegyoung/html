@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../Web/doit-hcj-new/15"
+		},
+		{
+			"path": "../../../Web/doit-hcj-new/16"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "html"
+	}
+}
