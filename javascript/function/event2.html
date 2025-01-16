@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>달력만들기</title>
+</head>
+
+<body>
+  월:<input type="number" name="month">
+  <div id="show"></div>
+  <button>폭발합니다.</button>
+  
+ 
+
+  <script>
+    //달력버튼 클릭하면 월정보를 입력받아서 출력.
+    document.querySelector('button').addEventListener('click', function () {
+      let month = document.querySelector('[name="month"]').value;
+      console.log(month);
+      makeCalendar(month);
+    });
+
+    //월정보를 알려주면 공백의 갯수 반환.
+    function getDays(month = 1) {
+      if (month == 1) {
+        return 3;
+      } else if (month = 2 || month == 3) {
+        return 6;
+      } else if (month == 4) {
+        return 2;
+      } else if (month == 5) {
+        return 4;
+      }
+    }
+
+    // 월정보를 알려주면 말일 반환.
+    function getLastDate(month = 1) {
+      if (month == 1 || month == 3 || month == 5) {
+        return 31;
+      } else if (month == 2) {
+        return 28;
+      } else if(month == 4) {
+        return 30;
+      }
+    }
+    makeCalendar(1);
+
+    //달력출력 함수
+    function makeCalendar(month = 1) {
+
+      let spaces = getDays(month); //1일의 위치(공백).
+      let lastDate = getLastDate(month); //월의 말일 
+
+      let days = ['일', '월', '화', '수', '목', '금', '토'];
+      let html = '';
+      html += '<table border="1">';
+      html += `<caption> ${month}월</caption>`;
+      html += '<thead>'
+      for (let day of days) {
+        html += `<th>${day}</th>`;
+      }
+      html += '</th></thead>';
+      html += '<tbody id="list"><try>';
+      //공백
+      for (let i = 0; i < spaces; i++) {
+        html += '<td></td>';
+      }
+      //날짜 출력.
+      for (let i = 1; i <= lastDate; i++) {
+        if ((i + spaces) % 7 == 0) { //토요일
+          html += `<td style="background-color: blue; color : white;">${i}</td>`;
+        } else if ((i + spaces) % 7 == 1) { // 일요일
+          html += `<td style="background-color: red; color : white;">${i}</td>`;
+        } else {
+          html += `<td>${i}</td>`;
+        }
+        //토요일이 될때 마다 줄바꿈.
+        if ((i + spaces) % 7 == 0) {
+          html += '</tr><tr>';
+        }
+      }
+      html += '</tr></tbody>';
+      html += '</table>';
+      document.querySelector('#show').innerHTML = html;
+    } //end of makeCalendar()
+  </script>
+
+</body>
+
+</html>

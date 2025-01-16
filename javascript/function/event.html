@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  단: <input  type="number" name="dan" id="">
+  <button>구구단 출력</button>
+  <script src="buttonecolor.js"></script>
+  <div id="show"></div>
+  <script>
+        //button에 클릭이벤트 등록 -> 이벤트 핸들러(함수.)
+    document.querySelector('button').addEventListener('click', function () {
+      let inputValue = document.querySelector('input').value;
+      let html = "<p>";
+      for (let i = 1; i <= 9; i++) {
+        html += `${inputValue} * ${i} = ${inputValue * i}</p><p>`;
+      }
+      html += "</p>"
+      document.querySelector('#show').innerHTML = html;
+    });
+  </script>
+</body>
+
+</html>
